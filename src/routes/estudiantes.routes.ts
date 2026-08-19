@@ -13,8 +13,6 @@ router.get("/", (req: Request<{}, {}, {},filtrar_estudiantes >, res: Response) =
   let respaldo_lista = [...estudiantes]
   if(bootcamp){
     respaldo_lista = respaldo_lista.filter((estado) => estado.bootcamp.toLowerCase() === bootcamp.toLowerCase())
-  }else{
-    return res.json({error: "el bootcamp no es valido"})
   }
   return res.json({datos: respaldo_lista})
 });
