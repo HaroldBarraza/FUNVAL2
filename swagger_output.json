@@ -1,0 +1,178 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de incripciones academicas",
+    "decription": "Documentacion de la API REST del MP-S2",
+    "version": "1.0.0",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/estudiantes/": {
+      "get": {
+        "tags": [
+          "Estudiantes"
+        ],
+        "summary": "obtiene la lista de todos los estudiantes",
+        "description": "",
+        "parameters": [
+          {
+            "name": "bootcamp",
+            "in": "query",
+            "description": "filtra por bootcamp(es indiferente a minusculas y mayusculas)",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Estudiantes"
+        ],
+        "summary": "crear un nuevo estudiante",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos para crear un nuevo estudiante",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string",
+                  "example": "Julio"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "example@example.com"
+                },
+                "bootcamp": {
+                  "type": "string",
+                  "example": "Programacion"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/estudiantes/{id}": {
+      "get": {
+        "tags": [
+          "Estudiantes"
+        ],
+        "summary": "obtiene solo un estudiante segun la ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID estudiante"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Estudiantes"
+        ],
+        "summary": "Actualiza la informacion de un estudiante",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del estudiante que se quiere actualizar"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos que desea actulizar",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string",
+                  "example": "Julio"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "example@example.com"
+                },
+                "bootcamp": {
+                  "type": "string",
+                  "example": "Programacion"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Estudiantes"
+        ],
+        "summary": "Eliminar a un estudiante por ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del estudiante que se quiere eliminar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  }
+}
