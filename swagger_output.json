@@ -2,17 +2,16 @@
   "swagger": "2.0",
   "info": {
     "title": "API de incripciones academicas",
-    "decription": "Documentacion de la API REST del MP-S2",
-    "version": "1.0.0",
-    "description": ""
+    "description": "Documentacion de la API REST del MP-S2",
+    "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "c87k99jw-3000.brs.devtunnels.ms",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
-    "/api/estudiantes/": {
+    "/api/students/": {
       "get": {
         "tags": [
           "Estudiantes"
@@ -48,7 +47,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "nombre": {
+                "name": {
                   "type": "string",
                   "example": "Julio"
                 },
@@ -71,7 +70,7 @@
         }
       }
     },
-    "/api/estudiantes/{id}": {
+    "/api/students/{id}": {
       "get": {
         "tags": [
           "Estudiantes"
@@ -121,7 +120,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "nombre": {
+                "name": {
                   "type": "string",
                   "example": "Julio"
                 },
