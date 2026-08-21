@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import type { Request, Response } from "express";
 import  type{  Estudiante, crearestudiante, actualizar_estudiante, filtrar_estudiantes} from "../types/estudiantes"
-import { estudiantes, setLista } from '../data/estudiantedb';
+import { estudiantes, agregarEstudiantes, setLista, guardarInformacion } from '../data/estudiantedb';
 const router:Router = Router()
 
 
@@ -52,7 +52,7 @@ router.get("/:id", (req:Request, res: Response) => {
 })
 
 
-router.post("/", (req: Request<{}, {}, crearestudiante>, res: Response) => {
+router.post("/", async(req: Request<{}, {}, crearestudiante>, res: Response) => {
   const { name, email, bootcamp } = req.body;
 /*#swagger.tags = ['Estudiantes']
 #swagger.summary = 'crear un nuevo estudiante'
@@ -84,12 +84,12 @@ bootcamp: 'Programacion'
     email: email,
     bootcamp: bootcamp
   };
-  
-  estudiantes.push(nuevo_estudiante);
+  await agregarEstudiantes(nuevo_estudiante)
+
   return res.status(201).json(nuevo_estudiante);
 });
 
-router.put("/:id", (req:Request, res: Response) =>{
+router.put("/:id", async(req:Request, res: Response) =>{
 /* #swagger.tags = ['Estudiantes']
 #swagger.summary = 'Actualiza la informacion de un estudiante'
     #swagger.parameters['id'] = {
@@ -124,11 +124,12 @@ bootcamp: 'Programacion'
       email:email ?? estudiantes[encontrarlo]?.email,
       bootcamp: bootcamp ?? estudiantes[encontrarlo]?.bootcamp,
     }
+    await guardarInformacion();
     res.json(estudiantes[encontrarlo])
   }
 })
 
-router.delete("/:id" ,(req:Request, res:Response) => {
+router.delete("/:id" ,async(req:Request, res:Response) => {
 /* 
 #swagger.tags = ['Estudiantes']
 #swagger.summary = 'Eliminar a un estudiante por ID'
@@ -144,9 +145,10 @@ router.delete("/:id" ,(req:Request, res:Response) => {
     return res.status(404).json({error: "estudiante no fue encontrado"})
   }else{
     let nuevalista = estudiantes.filter((id) => {
+      
       return id.id !== id_estudiante
     })
-    setLista(nuevalista)
+    await setLista(nuevalista);
     return res.status(200).json({mesaje:"se elimino al alumno con exito"})
   }
 })

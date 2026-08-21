@@ -4,6 +4,7 @@ import swaggerUi from "swagger-ui-express"
 import fs from "node:fs"
 import path from "node:path";
 import cors from 'cors';
+import { cargarEstudiantes } from "./data/estudiantedb";
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -25,6 +26,7 @@ app.use("/api/students", estudiantesRouter);
 
 
 
-app.listen(PORT, () => {
+app.listen(PORT, async() => {
   console.log(`el servido esta corriendo en puerto http://localhost:${PORT}`);
+  await cargarEstudiantes();
 });
