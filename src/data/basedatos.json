@@ -4,5 +4,16 @@
     "name": "Julio",
     "email": "example@example.com",
     "bootcamp": "Programacion"
+  },
+  {
+    "id": 1,
+    "email": "ana@ejemplo.com",
+    "bootcamp": "Frontend"
+  },
+  {
+    "id": 1,
+    "name": "qweqw",
+    "email": "eqweqwe@asdasd",
+    "bootcamp": "Programacion"
   }
 ]
